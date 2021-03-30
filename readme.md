@@ -15,10 +15,10 @@ render() {
     return (
         <Button
             onCapture={(e) => {
-				console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
-			}}
-			compress={1.0}
-			size={300}
+		console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+	    }}
+	    compress={1.0}
+            size={300}
         />
     );
 }
