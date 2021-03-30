@@ -109,8 +109,13 @@ class CaptureButton extends Component {
 	}
 
 	append() {
-		if (this.props.img) return <img onClick={this.capture.bind(this)} src={this.props.img} />;
-		else return <button onClick={this.capture.bind(this)}>{this.props.label ? this.props.label : 'Capture'}</button>;
+		if (this.props.image) return <img ref='button' onClick={this.capture.bind(this)} src={this.props.image} />;
+		else
+			return (
+				<button ref='button' onClick={this.capture.bind(this)}>
+					{this.props.label ? this.props.label : 'Capture'}
+				</button>
+			);
 	}
 
 	render() {

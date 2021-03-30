@@ -15,9 +15,9 @@ render() {
     return (
         <Button
             onCapture={(e) => {
-		console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
-	    }}
-	    compress={1.0}
+              console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+            }}
+            compress={1.0}
             size={300}
         />
     );
@@ -27,8 +27,9 @@ render() {
 
 # Properties
 
-| Properties |  type  |   description    | default |
-| :--------- | :----: | :--------------: | ------: |
-| onCapture  |  fun   |     callback     |         |
-| compress   | number |  image compress  |     1.0 |
-| size       | number | image width size |     500 |
+| Properties |   type   |   description    | default |
+| :--------- | :------: | :--------------: | ------: |
+| onCapture  |   fun    |     callback     |         |
+| compress   |  number  |  image compress  |     1.0 |
+| size       |  number  | image width size |     500 |
+| image      | url path | image as button  |         |
