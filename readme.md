@@ -3,21 +3,32 @@
 # Installation
 
 ```sh
-$ npm install <package> --save
+$ npm install lesca-react-capture-button --save
 ```
 
 # Usage
 
 ```javascript
-import foo from 'foo';
+import Button from 'lesca-react-capture-button';
+
+render() {
+    return (
+        <Button
+            onCapture={(e) => {
+				console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+			}}
+			compress={1.0}
+			size={300}
+        />
+    );
+}
+
 ```
-
-# Methods
-
-| method | options | description | default |
-| :----- | :-----: | :---------: | ------: |
 
 # Properties
 
-| Properties | type | description | default |
-| :--------- | :--: | :---------: | ------: |
+| Properties |  type  |   description    | default |
+| :--------- | :----: | :--------------: | ------: |
+| onCapture  |  fun   |     callback     |         |
+| compress   | number |  image compress  |     1.0 |
+| size       | number | image width size |     500 |

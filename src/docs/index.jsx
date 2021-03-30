@@ -6,9 +6,13 @@ import './styles.css';
 
 function Demo() {
 	return (
-		<>
-			<MyClass />
-		</>
+		<MyClass
+			onCapture={(e) => {
+				console.log(e);
+			}}
+			compress={1.0}
+			size={300}
+		/>
 	);
 }
 
