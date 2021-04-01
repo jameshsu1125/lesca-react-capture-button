@@ -42,6 +42,7 @@ class CaptureButton extends Component {
 
 					switch (ori) {
 						case 1: // 水平(一般)
+						case 6:
 							ctx.drawImage(image, 0, 0, w, h);
 							break;
 						case 2: // 水平鏡像
@@ -66,11 +67,11 @@ class CaptureButton extends Component {
 							ctx.rotate((90 * Math.PI) / 180);
 							ctx.drawImage(image, -w / 2, -h / 2, w, h);
 							break;
-						case 6: // 順時鐘翻轉270度
-							ctx.translate(w / 2, h / 2);
-							ctx.rotate((270 * Math.PI) / 180);
-							ctx.drawImage(image, -w / 2, -h / 2, w, h);
-							break;
+						//case 6: // 順時鐘翻轉270度
+						// ctx.translate(w / 2, h / 2);
+						// ctx.rotate((270 * Math.PI) / 180);
+						// ctx.drawImage(image, -w / 2, -h / 2, w, h);
+						//break;
 						case 7: // 水平鏡像後，順時鐘翻轉90度
 							ctx.translate(w, 0);
 							ctx.scale(-1, 1);
