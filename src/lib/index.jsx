@@ -128,8 +128,7 @@ class CaptureButton extends Component {
 					ref='input'
 					onChange={this.onChange.bind(this)}
 					type='file'
-					accept='image/*'
-					capture='camera'
+					accept='image/*;capture=camera'
 				/>
 				<canvas ref='canvas' style={{ display: 'none' }} />
 			</>
