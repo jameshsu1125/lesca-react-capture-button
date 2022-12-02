@@ -21,17 +21,19 @@ npm install lesca-react-capture-button --save
 ## Usage
 
 ```JSX
-import Button from 'lesca-react-capture-button';
+import CatureButton from 'lesca-react-capture-button';
 
 render() {
     return (
-        <Button
+        <CatureButton
             onCapture={(e) => {
               console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
             }}
             compress={1.0}
             size={300}
-        />
+        >
+            Capture
+        </CatureButton>
     );
 }
 
@@ -41,13 +43,12 @@ render() {
 
 ### props
 
-| Properties               |     description      |   default |
-| :----------------------- | :------------------: | --------: |
-| **onCapture**:_function_ |       callback       |       log |
-| **compress**:_float_     |    image compress    |       1.0 |
-| **size**:_int_           |    image max size    |       500 |
-| **image**:_string_       | image replace button |           |
-| **label**:_string_       |                      | "Capture" |
+| Properties               |     description      | default |
+| :----------------------- | :------------------: | ------: |
+| **onCapture**:_function_ |       callback       |     log |
+| **compress**:_float_     |    image compress    |     1.0 |
+| **size**:_int_           |    image max size    |     500 |
+| **image**:_string_       | image replace button |         |
 
 ### Features
 

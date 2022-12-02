@@ -120,17 +120,17 @@ ToBase64.defaultProps = {
   compress: 1.0,
 };
 
-const Button = ({ image, onClick, buttonRef, label, className }) => {
+const Button = ({ image, onClick, buttonRef, className, children }) => {
   return image ? (
     <img ref={buttonRef} src={image} onClick={onClick} className={className} />
   ) : (
     <button ref={buttonRef} onClick={onClick} className={className} role='none'>
-      {label}
+      {children}
     </button>
   );
 };
 
-const CatureButton = ({ image, label, className, onCapture, compress, size }) => {
+const CatureButton = ({ image, className, onCapture, compress, size, children }) => {
   const inputRef = useRef();
   const canvasRef = useRef();
   const buttonRef = useRef();
@@ -149,7 +149,7 @@ const CatureButton = ({ image, label, className, onCapture, compress, size }) =>
 
   return (
     <>
-      <Button {...{ image, buttonRef, onClick, label, className, compress, size }} />
+      <Button {...{ image, buttonRef, onClick, className, compress, size }}>{children}</Button>
       <input
         style={{ display: 'none' }}
         ref={inputRef}
@@ -164,7 +164,6 @@ const CatureButton = ({ image, label, className, onCapture, compress, size }) =>
 
 CatureButton.defaultProps = {
   image: '',
-  label: 'Capture',
   className: '',
 };
 
