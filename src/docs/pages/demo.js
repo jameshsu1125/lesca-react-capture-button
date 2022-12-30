@@ -40,7 +40,9 @@ const Demo = () => {
           setBase64(e);
         }}
         label='get a photo'
-      />
+      >
+        capture
+      </Button>
     </div>
   );
 };

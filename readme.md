@@ -49,6 +49,7 @@ render() {
 | **compress**:_float_     |    image compress    |     1.0 |
 | **size**:_int_           |    image max size    |     500 |
 | **image**:_string_       | image replace button |         |
+| **type**:_string_        |   "png" or "jpeg"    |   "png" |
 
 ### Features
 

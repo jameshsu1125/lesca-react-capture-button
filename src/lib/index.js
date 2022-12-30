@@ -2,7 +2,7 @@ import EXIF from 'exif-js';
 import UserAgent from 'lesca-user-agent';
 import { useCallback, useRef } from 'react';
 
-const ToBase64 = ({ file, size, canvasRef, compress }) => {
+const ToBase64 = ({ file, size, canvasRef, compress, type }) => {
   return new Promise((res) => {
     const ctx = canvasRef.current?.getContext('2d');
 
@@ -106,7 +106,7 @@ const ToBase64 = ({ file, size, canvasRef, compress }) => {
               ctx.drawImage(image, 0, 0, result.width, result.height);
               break;
           }
-          res(canvasRef.current.toDataURL('image/png', compress));
+          res(canvasRef.current.toDataURL(`image/${type}`, compress));
         });
       };
 
@@ -118,6 +118,7 @@ const ToBase64 = ({ file, size, canvasRef, compress }) => {
 ToBase64.defaultProps = {
   size: 500,
   compress: 1.0,
+  type: 'png',
 };
 
 const Button = ({ image, onClick, buttonRef, className, children }) => {
