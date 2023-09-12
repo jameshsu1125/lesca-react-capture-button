@@ -21,19 +21,21 @@ npm install lesca-react-capture-button --save
 ## Usage
 
 ```JSX
-import CatureButton from 'lesca-react-capture-button';
+import CaptureProvider, { DOMString } from 'lesca-react-capture-button';
 
 render() {
     return (
-        <CatureButton
-            onCapture={(e) => {
-              console.log(e);  // output: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
-            }}
-            compress={1.0}
-            size={300}
+        <CaptureProvider
+          type={DOMString.png}
+          compress={0.5}
+          maxWidth={500}
+          onCapture={(data) => {
+            const { image } = data;
+            console.log(image);
+          }}
         >
-            Capture
-        </CatureButton>
+          <button>capture</button>
+        </CaptureProvider>
     );
 }
 
@@ -43,15 +45,13 @@ render() {
 
 ### props
 
-| Properties               |     description      | default |
-| :----------------------- | :------------------: | ------: |
-| **onCapture**:_function_ |       callback       |     log |
-| **compress**:_float_     |    image compress    |     1.0 |
-| **size**:_int_           |    image max size    |     500 |
-| **image**:_string_       | image replace button |         |
-| **type**:_string_        |   "png" or "jpeg"    |   "png" |
+| Properties               |                                           description                                           |     default |
+| :----------------------- | :---------------------------------------------------------------------------------------------: | ----------: |
+| **onCapture**:_function_ |                                            callback                                             |        void |
+| **compress**:_float_     |                                     image compress (0 - 1)                                      |         0.7 |
+| **maxWidth**:_int_       |                                      image max width size                                       |        1024 |
+| **type**:_string_        | [type](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL#parameters) | 'image/png' |
 
 ### Features
 
-- TypeScript
 - maintain if necessary

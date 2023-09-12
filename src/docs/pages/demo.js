@@ -1,6 +1,7 @@
-import { Box, TextField } from '@mui/material';
+import { Box, Button, ButtonGroup, TextField } from '@mui/material';
 import { useState } from 'react';
-import Button from '../../lib/index';
+import CaptureProvider from '../../lib/index';
+import { DOMString } from '../../lib/type';
 
 const Demo = () => {
   const [base64, setBase64] = useState('');
@@ -34,15 +35,19 @@ const Demo = () => {
       </pre>
       <img src={base64} />
       <br />
-      <Button
-        size={size}
-        onCapture={(e) => {
-          setBase64(e);
-        }}
-        label='get a photo'
-      >
-        capture
-      </Button>
+      <ButtonGroup variant='contained'>
+        <CaptureProvider
+          type={DOMString.jpg}
+          compress={1}
+          maxWidth={size}
+          onCapture={(data) => {
+            const { image } = data;
+            setBase64(image);
+          }}
+        >
+          <Button>capture</Button>
+        </CaptureProvider>
+      </ButtonGroup>
     </div>
   );
 };

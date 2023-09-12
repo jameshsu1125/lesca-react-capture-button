@@ -31,12 +31,6 @@ const Usage = () => {
   return (
     <div className='Usage'>
       <h2>Usage</h2>
-      {codes.map((e) => (
-        <div key={e.title}>
-          <h3>{e.title}</h3>
-          <Code code={e.code} theme={e.type} />
-        </div>
-      ))}
       <ButtonGroup variant='contained'>
         <Button>click</Button>
       </ButtonGroup>
