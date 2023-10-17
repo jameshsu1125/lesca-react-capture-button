@@ -1,6 +1,6 @@
 {
   "name": "lesca-react-capture-button",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "get base64 image use local file.",
   "main": "lib/index.js",
   "scripts": {
@@ -28,7 +28,6 @@
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",
-    "@babel/runtime": "^7.23.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.13",
@@ -63,6 +62,7 @@
     "url": "git@github.com:jameshsu1125/lesca-react-capture-button.git"
   },
   "dependencies": {
+    "@babel/runtime": "^7.23.2",
     "exif-js": "^2.3.0",
     "lesca-user-agent": "^2.0.0"
   }
