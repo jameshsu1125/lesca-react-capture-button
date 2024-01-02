@@ -44,3 +44,5 @@ CaptureProvider.defaultProps = {
 };
 
 export default CaptureProvider;
+
+export { DOMString };

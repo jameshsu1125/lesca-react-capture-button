@@ -8,3 +8,4 @@ declare const CaptureProvider: {
     };
 };
 export default CaptureProvider;
+export { DOMString };

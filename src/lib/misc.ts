@@ -1,5 +1,5 @@
 import EXIF from 'exif-js';
-import UserAgent from 'lesca-user-agent';
+import UserAgent, { UserAgentType } from 'lesca-user-agent';
 
 export const toBase64 = ({ file, maxWidth, compress, type, canvasRef }) => {
   const [currentFile] = [...file];
@@ -26,7 +26,8 @@ export const toBase64 = ({ file, maxWidth, compress, type, canvasRef }) => {
         const fakeImage: string = event.currentTarget;
 
         EXIF.getData(fakeImage, () => {
-          const orientation = UserAgent.get() === 'mobile' ? EXIF.getTag(image, 'Orientation') : 1;
+          const orientation =
+            UserAgent.get() === UserAgentType.Mobile ? EXIF.getTag(image, 'Orientation') : 1;
           switch (orientation) {
             case 1: // 水平(一般)
             case 6:
