@@ -29,7 +29,7 @@ const CaptureProvider = ({ children, maxWidth, compress, type, onCapture }: Prov
         ref={inputRef}
         style={{ display: 'none' }}
         type='file'
-        accept='image/png,image/jpg,image/webp;capture=camera'
+        accept='image/png, image/jpg, image/webp; capture=camera'
         onChange={onChange}
       />
       <canvas ref={canvasRef} style={{ display: 'none' }} />
