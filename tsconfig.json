@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib/",
     "target": "es5",
-    "module": "AMD",
+    "module": "commonjs",
     "declaration": true,
     "strict": false,
     "esModuleInterop": true,
@@ -17,5 +17,5 @@
       "*": ["./lib/*"]
     }
   },
-  "include": ["src/lib", "src/lib/exif.js"]
+  "include": ["src/lib", "src/lib/exif.ts"]
 }
