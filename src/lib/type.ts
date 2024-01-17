@@ -6,10 +6,16 @@ export enum DOMString {
   webp = 'image/webp',
 }
 
+export type TResult = {
+  image: string;
+  width: number;
+  height: number;
+};
+
 export interface ProviderProps {
   children: ReactElement;
   maxWidth?: number;
   type?: DOMString;
   compress?: number;
-  onCapture?: Function;
+  onCapture?: (e: TResult) => void;
 }

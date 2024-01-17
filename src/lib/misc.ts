@@ -1,7 +1,8 @@
 import EXIF from 'exif-js';
 import UserAgent, { UserAgentType } from 'lesca-user-agent';
+import { TResult } from './type';
 
-export const toBase64 = ({ file, maxWidth, compress, type, canvasRef }) => {
+export const toBase64 = ({ file, maxWidth, compress, type, canvasRef }): Promise<TResult> => {
   const [currentFile] = [...file];
   const ctx = canvasRef.current?.getContext('2d');
   return new Promise((resolve, reject) => {
