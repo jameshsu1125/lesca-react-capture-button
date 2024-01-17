@@ -1,6 +1,6 @@
 {
   "name": "lesca-react-capture-button",
-  "version": "2.0.8",
+  "version": "2.1.0",
   "description": "get base64 image use local file.",
   "main": "lib/index.js",
   "scripts": {
