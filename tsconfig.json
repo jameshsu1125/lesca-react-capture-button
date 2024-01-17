@@ -17,5 +17,5 @@
       "*": ["./lib/*"]
     }
   },
-  "include": ["src/lib"]
+  "include": ["src/lib", "src/lib/exif.js"]
 }

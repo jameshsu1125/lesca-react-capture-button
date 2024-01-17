@@ -1,4 +1,4 @@
-import EXIF from 'exif-js';
+import EXIF from './exif';
 import UserAgent, { UserAgentType } from 'lesca-user-agent';
 import { TResult } from './type';
 

@@ -63,7 +63,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.8",
-    "exif-js": "^2.3.0",
     "lesca-user-agent": "^2.0.1"
   }
 }
