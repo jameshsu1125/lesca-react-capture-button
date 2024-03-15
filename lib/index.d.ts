@@ -8,4 +8,12 @@ declare const CaptureProvider: {
     };
 };
 export default CaptureProvider;
-export { DOMString };
+type FileToBase64Props = {
+    file: File;
+    canvas: HTMLCanvasElement;
+    maxWidth: number;
+    compress?: number;
+    type?: DOMString;
+};
+declare const FileToBase64: ({ file, maxWidth, compress, type, canvas }: FileToBase64Props) => Promise<unknown>;
+export { DOMString, FileToBase64 };
