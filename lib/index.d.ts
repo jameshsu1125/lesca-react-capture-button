@@ -1,4 +1,4 @@
-import { DOMString, ProviderProps } from './type';
+import { DOMString, ProviderProps, TResult } from './type';
 declare const CaptureProvider: {
     ({ children, maxWidth, compress, type, onCapture }: ProviderProps): import("react/jsx-runtime").JSX.Element[];
     defaultProps: {
@@ -15,5 +15,5 @@ type FileToBase64Props = {
     compress?: number;
     type?: DOMString;
 };
-declare const FileToBase64: ({ file, maxWidth, compress, type, canvas }: FileToBase64Props) => Promise<unknown>;
+declare const FileToBase64: ({ file, maxWidth, compress, type, canvas }: FileToBase64Props) => Promise<TResult>;
 export { DOMString, FileToBase64 };

@@ -1,7 +1,7 @@
 import { ChangeEvent, Children, cloneElement, useRef } from 'react';
 import EXIF from './exif';
 import { toBase64 } from './misc';
-import { DOMString, ProviderProps } from './type';
+import { DOMString, ProviderProps, TResult } from './type';
 import UserAgent, { UserAgentType } from 'lesca-user-agent';
 
 const CaptureProvider = ({ children, maxWidth, compress, type, onCapture }: ProviderProps) => {
@@ -57,7 +57,7 @@ type FileToBase64Props = {
 
 const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Props) => {
   const ctx = canvas.getContext('2d');
-  return new Promise((resolve, reject) => {
+  return new Promise<TResult>((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (r) => {
@@ -74,7 +74,7 @@ const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Pr
         canvas.height = result.height;
 
         // @ts-ignore
-        const fakeImage: string = r.currentTarget;
+        const fakeImage: string = e.currentTarget;
         EXIF.getData(fakeImage, () => {
           const orientation =
             UserAgent.get() === UserAgentType.Mobile ? EXIF.getTag(image, 'Orientation') : 1;
