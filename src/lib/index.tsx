@@ -4,7 +4,13 @@ import { toBase64 } from './misc';
 import { DOMString, ProviderProps, TResult } from './type';
 import UserAgent, { UserAgentType } from 'lesca-user-agent';
 
-const CaptureProvider = ({ children, maxWidth, compress, type, onCapture }: ProviderProps) => {
+const CaptureProvider = ({
+  children,
+  maxWidth = 1024,
+  compress = 0.7,
+  type = DOMString.png,
+  onCapture,
+}: ProviderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -37,12 +43,6 @@ const CaptureProvider = ({ children, maxWidth, compress, type, onCapture }: Prov
       <canvas ref={canvasRef} style={{ display: 'none' }} />
     </>
   ));
-};
-
-CaptureProvider.defaultProps = {
-  size: 1024,
-  type: DOMString.png,
-  compress: 0.7,
 };
 
 export default CaptureProvider;
