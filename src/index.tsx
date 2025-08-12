@@ -1,8 +1,7 @@
-import { ChangeEvent, Children, cloneElement, useRef } from 'react';
-import EXIF from './exif';
-import { toBase64 } from './misc';
-import { DOMString, ProviderProps, TResult } from './type';
 import UserAgent, { UserAgentType } from 'lesca-user-agent';
+import { ChangeEvent, Children, cloneElement, useRef, useState } from 'react';
+import EXIF from './exif';
+import { DOMString, ProviderProps, TResult } from './type';
 
 const CaptureProvider = ({
   children,
@@ -19,30 +18,52 @@ const CaptureProvider = ({
   };
 
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const result = await toBase64({ file: e.target.files, maxWidth, compress, type, canvasRef });
-    inputRef.current.value = '';
-    onCapture?.(result);
+    if (e.target.files?.length === 1 && canvasRef.current) {
+      const result = await FileToBase64({
+        file: e.target.files?.[0],
+        maxWidth,
+        compress,
+        type,
+        canvas: canvasRef.current,
+      });
+      if (inputRef.current) inputRef.current.value = '';
+      onCapture?.(result);
+    }
   };
 
-  return Children.map(children, (child) => (
-    <>
-      {cloneElement(child, {
-        ...child.props,
-        onClick: () => {
-          child.props.onClick?.();
-          onClick();
-        },
-      })}
-      <input
-        ref={inputRef}
-        style={{ display: 'none' }}
-        type='file'
-        accept='image/png,image/jpeg,image/webp;capture=camera'
-        onChange={onChange}
-      />
-      <canvas ref={canvasRef} style={{ display: 'none' }} />
-    </>
-  ));
+  return Children.map(children, (child) => {
+    const element = child as React.ReactElement<any>;
+    return (
+      <>
+        {typeof child === 'string' ? (
+          <div
+            onClick={() => {
+              element.props.onClick?.();
+              onClick();
+            }}
+          >
+            {child}
+          </div>
+        ) : (
+          cloneElement(element, {
+            ...element.props,
+            onClick: () => {
+              element.props.onClick?.();
+              onClick();
+            },
+          })
+        )}
+        <input
+          ref={inputRef}
+          style={{ display: 'none' }}
+          type='file'
+          accept='image/png,image/jpeg,image/webp;capture=camera'
+          onChange={onChange}
+        />
+        <canvas ref={canvasRef} style={{ display: 'none' }} />
+      </>
+    );
+  });
 };
 
 export default CaptureProvider;
@@ -57,6 +78,7 @@ type FileToBase64Props = {
 
 const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Props) => {
   const ctx = canvas.getContext('2d');
+
   return new Promise<TResult>((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -81,19 +103,19 @@ const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Pr
           switch (orientation) {
             case 1: // 水平(一般)
             case 6:
-              ctx.drawImage(image, 0, 0, result.width, result.height);
+              ctx?.drawImage(image, 0, 0, result.width, result.height);
               break;
 
             case 2: // 水平鏡像
-              ctx.translate(result.width, 0);
-              ctx.scale(-1, 1);
-              ctx.drawImage(image, 0, 0, result.width, result.height);
+              ctx?.translate(result.width, 0);
+              ctx?.scale(-1, 1);
+              ctx?.drawImage(image, 0, 0, result.width, result.height);
               break;
 
             case 3: // 翻轉180度
-              ctx.translate(result.width / 2, result.height / 2);
-              ctx.rotate((180 * Math.PI) / 180);
-              ctx.drawImage(
+              ctx?.translate(result.width / 2, result.height / 2);
+              ctx?.rotate((180 * Math.PI) / 180);
+              ctx?.drawImage(
                 image,
                 -result.width / 2,
                 -result.height / 2,
@@ -103,17 +125,17 @@ const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Pr
               break;
 
             case 4: // 垂直鏡像
-              ctx.translate(0, result.height);
-              ctx.scale(1, -1);
-              ctx.drawImage(image, 0, 0, result.width, result.height);
+              ctx?.translate(0, result.height);
+              ctx?.scale(1, -1);
+              ctx?.drawImage(image, 0, 0, result.width, result.height);
               break;
 
             case 5: // 水平鏡像後，順時鐘翻轉270度
-              ctx.translate(result.width, 0);
-              ctx.scale(-1, 1);
-              ctx.translate(result.width / 2, result.height / 2);
-              ctx.rotate((90 * Math.PI) / 180);
-              ctx.drawImage(
+              ctx?.translate(result.width, 0);
+              ctx?.scale(-1, 1);
+              ctx?.translate(result.width / 2, result.height / 2);
+              ctx?.rotate((90 * Math.PI) / 180);
+              ctx?.drawImage(
                 image,
                 -result.width / 2,
                 -result.height / 2,
@@ -123,11 +145,11 @@ const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Pr
               break;
 
             case 7: // 水平鏡像後，順時鐘翻轉90度
-              ctx.translate(result.width, 0);
-              ctx.scale(-1, 1);
-              ctx.translate(result.width / 2, result.height / 2);
-              ctx.rotate((270 * Math.PI) / 180);
-              ctx.drawImage(
+              ctx?.translate(result.width, 0);
+              ctx?.scale(-1, 1);
+              ctx?.translate(result.width / 2, result.height / 2);
+              ctx?.rotate((270 * Math.PI) / 180);
+              ctx?.drawImage(
                 image,
                 -result.width / 2,
                 -result.height / 2,
@@ -137,9 +159,9 @@ const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Pr
               break;
 
             case 8: // 順時鐘翻轉90度
-              ctx.translate(result.width / 2, result.height / 2);
-              ctx.rotate((90 * Math.PI) / 180);
-              ctx.drawImage(
+              ctx?.translate(result.width / 2, result.height / 2);
+              ctx?.rotate((90 * Math.PI) / 180);
+              ctx?.drawImage(
                 image,
                 -result.width / 2,
                 -result.height / 2,
@@ -149,16 +171,16 @@ const FileToBase64 = ({ file, maxWidth, compress, type, canvas }: FileToBase64Pr
               break;
 
             default:
-              ctx.drawImage(image, 0, 0, result.width, result.height);
+              ctx?.drawImage(image, 0, 0, result.width, result.height);
               break;
           }
 
-          const base64 = canvas.toDataURL(`image/${type || DOMString.jpg}`, compress | 0.7);
+          const base64 = canvas.toDataURL(`image/${type || DOMString.jpg}`, compress || 0.7);
           resolve({ image: base64, ...result });
         });
       };
       image.onerror = () => reject({ message: 'load image error' });
-      image.src = String(r.target.result);
+      image.src = String(r.target?.result);
     };
   });
 };
