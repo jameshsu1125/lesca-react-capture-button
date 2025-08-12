@@ -1,5 +1,5 @@
 import UserAgent, { UserAgentType } from 'lesca-user-agent';
-import { ChangeEvent, Children, cloneElement, useRef, useState } from 'react';
+import { ChangeEvent, Children, cloneElement, useRef } from 'react';
 import EXIF from './exif';
 import { DOMString, ProviderProps, TResult } from './type';
 

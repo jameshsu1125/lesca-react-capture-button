@@ -1,8 +1,8 @@
 {
-  "name": "template-vite-react-npm",
+  "name": "lesca-react-capture-button",
   "private": false,
-  "description": "xxxxx",
-  "version": "0.0.0",
+  "description": "get base64 image use local file.",
+  "version": "3.0.0",
   "type": "module",
   "keywords": [
     "lesca"
