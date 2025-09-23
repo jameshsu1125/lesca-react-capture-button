@@ -1,15 +1,22 @@
 import ReactDOM from 'react-dom/client';
 import CaptureProvider from '.';
+import { useState } from 'react';
 
 const App = () => {
+  const [r, setR] = useState('');
   return (
-    <CaptureProvider
-      onCapture={(e) => {
-        console.log(e);
-      }}
-    >
-      <div className='h-5 w-20 bg-red-500'>asd</div>
-    </CaptureProvider>
+    <>
+      {r && <img src={r} alt='' />}
+      <CaptureProvider
+        maxWidth={500}
+        compress={0.5}
+        onCapture={(e) => {
+          setR(e.image);
+        }}
+      >
+        <div className='btn btn-primary'>asd</div>
+      </CaptureProvider>
+    </>
   );
 };
 
