@@ -14,5 +14,6 @@ export interface ProviderProps {
     maxWidth?: number;
     type?: DOMString;
     compress?: number;
-    onCapture?: (e: TResult) => void;
+    multiple?: boolean;
+    onCapture?: (e: TResult[]) => void;
 }

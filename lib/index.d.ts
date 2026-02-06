@@ -1,5 +1,5 @@
 import { DOMString, ProviderProps, TResult } from './type';
-declare const CaptureProvider: ({ children, maxWidth, compress, type, onCapture, }: ProviderProps) => import("react/jsx-runtime").JSX.Element[];
+declare const CaptureProvider: ({ children, maxWidth, compress, type, multiple, onCapture, }: ProviderProps) => import("react/jsx-runtime").JSX.Element[];
 export default CaptureProvider;
 type FileToBase64Props = {
     file: File;

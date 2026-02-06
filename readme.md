@@ -29,6 +29,7 @@ render() {
           type={DOMString.png}
           compress={0.5}
           maxWidth={500}
+          multiple={false}
           onCapture={(data) => {
             data.forEach(dat=>{
               const { image } = dat;
@@ -52,6 +53,7 @@ render() {
 | **onCapture**:_function_ |                                            callback                                             |        void |
 | **compress**:_float_     |                                     image compress (0 - 1)                                      |         0.7 |
 | **maxWidth**:_int_       |                                      image max width size                                       |        1024 |
+| **multiple**:_boolean_   |                                 is image processing multiple ?                                  |       false |
 | **type**:_string_        | [type](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL#parameters) | 'image/png' |
 
 ### Features
