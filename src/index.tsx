@@ -18,16 +18,23 @@ const CaptureProvider = ({
   };
 
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.length === 1 && canvasRef.current) {
-      const result = await FileToBase64({
-        file: e.target.files?.[0],
-        maxWidth,
-        compress,
-        type,
-        canvas: canvasRef.current,
-      });
-      if (inputRef.current) inputRef.current.value = '';
-      onCapture?.(result);
+    if (canvasRef.current) {
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        const results = Object.values(files).map(
+          async (file) =>
+            await FileToBase64({
+              file,
+              maxWidth,
+              compress,
+              type,
+              canvas: canvasRef.current!,
+            }),
+        );
+        const resolvedResults = await Promise.all(results);
+        onCapture?.(resolvedResults);
+        if (inputRef.current) inputRef.current.value = '';
+      }
     }
   };
 
@@ -59,6 +66,7 @@ const CaptureProvider = ({
           type='file'
           accept='image/png,image/jpeg,image/webp;capture=camera'
           onChange={onChange}
+          multiple
         />
         <canvas ref={canvasRef} style={{ display: 'none' }} />
       </>

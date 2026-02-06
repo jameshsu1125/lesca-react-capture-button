@@ -1,20 +1,21 @@
+import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import CaptureProvider from '.';
-import { useState } from 'react';
+import { TResult } from './type';
 
 const App = () => {
-  const [r, setR] = useState('');
+  const [r, setR] = useState<TResult[]>([]);
   return (
     <>
-      {r && <img src={r} alt='' />}
+      {r && r.map((item, index) => <img key={index} src={item.image} alt='' />)}
       <CaptureProvider
         maxWidth={500}
         compress={0.5}
         onCapture={(e) => {
-          setR(e.image);
+          setR(e);
         }}
       >
-        <div className='btn btn-primary'>asd</div>
+        <div className='btn btn-primary'>capture</div>
       </CaptureProvider>
     </>
   );
