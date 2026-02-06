@@ -30,8 +30,10 @@ render() {
           compress={0.5}
           maxWidth={500}
           onCapture={(data) => {
-            const { image } = data;
-            console.log(image);
+            data.forEach(dat=>{
+              const { image } = dat;
+              console.log(image);
+            })
           }}
         >
           <button>capture</button>

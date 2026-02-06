@@ -8,6 +8,7 @@ const CaptureProvider = ({
   maxWidth = 1024,
   compress = 0.7,
   type = DOMString.png,
+  multiple = false,
   onCapture,
 }: ProviderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -20,8 +21,14 @@ const CaptureProvider = ({
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (canvasRef.current) {
       const files = e.target.files;
-      if (files && files.length > 0) {
-        const results = Object.values(files).map(
+      if (files) {
+        const currentFiles = multiple ? files : { 0: files[0] };
+        if (!multiple && files.length > 1) {
+          console.warn(
+            '[CaptureProvider] multiple is false, but more than one file selected. Only the first file will be processed.',
+          );
+        }
+        const results = Object.values(currentFiles).map(
           async (file) =>
             await FileToBase64({
               file,
@@ -66,7 +73,7 @@ const CaptureProvider = ({
           type='file'
           accept='image/png,image/jpeg,image/webp;capture=camera'
           onChange={onChange}
-          multiple
+          multiple={multiple}
         />
         <canvas ref={canvasRef} style={{ display: 'none' }} />
       </>
