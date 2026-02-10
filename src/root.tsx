@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import CaptureProvider from '.';
-import { TResult } from './type';
+import { DOMString, TResult } from './type';
 
 const App = () => {
   const [r, setR] = useState<TResult[]>([]);
   return (
     <>
-      {r && r.map((item, index) => <img key={index} src={item.image} alt='' />)}
+      {r && r.map((item, index) => <img key={index} src={item.url} alt='' />)}
       <CaptureProvider
-        maxWidth={500}
-        compress={0.5}
+        maxWidth={768}
+        compress={0.7}
+        multiple
+        type={DOMString.webp}
         onCapture={(e) => {
           setR(e);
         }}

@@ -5,7 +5,7 @@ export declare enum DOMString {
     webp = "image/webp"
 }
 export type TResult = {
-    image: string;
+    url: string;
     width: number;
     height: number;
 };

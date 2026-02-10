@@ -7,7 +7,7 @@ export enum DOMString {
 }
 
 export type TResult = {
-  image: string;
+  url: string;
   width: number;
   height: number;
 };

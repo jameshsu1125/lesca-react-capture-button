@@ -8,7 +8,7 @@
 
 # Why use it?
 
-get base64 image use local file or mobile camera.
+get blob url image use local file or mobile camera.
 
 #### [Live Demo](https://jameshsu1125.github.io/lesca-react-capture-button/)
 
@@ -32,8 +32,8 @@ render() {
           multiple={false}
           onCapture={(data) => {
             data.forEach(dat=>{
-              const { image } = dat;
-              console.log(image);
+              const { url } = dat;
+              console.log(url);
             })
           }}
         >
