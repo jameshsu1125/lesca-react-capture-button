@@ -7,13 +7,15 @@ const App = () => {
   const [r, setR] = useState<TResult[]>([]);
   return (
     <>
-      {r && r.map((item, index) => <img key={index} src={item.url} alt='' />)}
+      {r && r.map((item, index) => <img key={index} src={item.base64} alt='' />)}
       <CaptureProvider
         maxWidth={768}
         compress={0.7}
         multiple
         type={DOMString.webp}
         onCapture={(e) => {
+          console.log(e);
+
           setR(e);
         }}
       >

@@ -38,9 +38,17 @@ const CaptureProvider = ({
         img.src = url;
         await img.decode();
         const { width, height } = img;
+        const base64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
         return {
+          blob,
           width,
           height,
+          base64,
           url,
         };
       });

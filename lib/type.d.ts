@@ -6,6 +6,8 @@ export declare enum DOMString {
 }
 export type TResult = {
     url: string;
+    blob: Blob;
+    base64: string;
     width: number;
     height: number;
 };
