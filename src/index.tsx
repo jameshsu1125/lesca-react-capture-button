@@ -2,6 +2,14 @@ import Compressor from 'compressorjs';
 import { ChangeEvent, Children, useId } from 'react';
 import { DOMString, ProviderProps } from './type';
 
+export type TResult = {
+  url: string;
+  blob: Blob;
+  base64: string;
+  width: number;
+  height: number;
+};
+
 const CaptureProvider = ({
   children,
   maxWidth = 1024,
