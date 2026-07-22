@@ -59,3 +59,9 @@ render() {
 ### Features
 
 - maintain if necessary
+
+### data
+
+-[執行簡報](https://docs.google.com/presentation/d/1orx_4MY8Bx0yjYyEunaSBZpCCdk8HyJukAYYI5MdoZ0/edit?slide=id.p#slide=id.p)
+
+-[專案的雲端](https://drive.google.com/drive/folders/1yRGMju-MczuyoYGS-KMZ1x09SVvP25Z4)

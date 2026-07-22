@@ -39,10 +39,7 @@ export default defineConfig({
         },
     },
     assetsInclude: ['**/*.gltf', '**/*.glb', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg'],
-    plugins: [
-        react(),
-        cssInjectedByJsPlugin(),
-    ],
+    plugins: [react(), cssInjectedByJsPlugin()],
     server: {
         open: true,
         port: 5173,
