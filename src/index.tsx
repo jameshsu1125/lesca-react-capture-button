@@ -1,5 +1,5 @@
 import Compressor from 'compressorjs';
-import { ChangeEvent, Children, cloneElement, useRef } from 'react';
+import { ChangeEvent, Children, useId } from 'react';
 import { DOMString, ProviderProps } from './type';
 
 const CaptureProvider = ({
@@ -10,11 +10,7 @@ const CaptureProvider = ({
   multiple = false,
   onCapture,
 }: ProviderProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const onClick = () => {
-    inputRef.current?.click();
-  };
+  const id = useId();
 
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -55,43 +51,27 @@ const CaptureProvider = ({
 
       const results = await Promise.all(promisesImage);
       onCapture?.(results);
-      if (inputRef.current) inputRef.current.value = '';
+      e.target.value = '';
     }
   };
 
-  return Children.map(children, (child) => {
-    const element = child as React.ReactElement<any>;
-    return (
-      <>
-        {typeof child === 'string' ? (
-          <div
-            onClick={() => {
-              element.props.onClick?.();
-              onClick();
-            }}
-          >
-            {child}
-          </div>
-        ) : (
-          cloneElement(element, {
-            ...element.props,
-            onClick: () => {
-              element.props.onClick?.();
-              onClick();
-            },
-          })
-        )}
-        <input
-          ref={inputRef}
-          style={{ display: 'none' }}
-          type='file'
-          accept='image/png,image/jpeg,image/webp;capture=camera'
-          onChange={onChange}
-          multiple={multiple}
-        />
-      </>
-    );
-  });
+  return (
+    <>
+      {Children.map(children, (child) => (
+        <label htmlFor={id} style={typeof child !== 'string' ? { display: 'contents' } : undefined}>
+          {child}
+        </label>
+      ))}
+      <input
+        id={id}
+        style={{ display: 'none' }}
+        type='file'
+        accept='image/png,image/jpeg,image/webp;capture=camera'
+        onChange={onChange}
+        multiple={multiple}
+      />
+    </>
+  );
 };
 
 export default CaptureProvider;
