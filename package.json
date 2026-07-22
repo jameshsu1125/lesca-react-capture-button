@@ -12,14 +12,16 @@
   ],
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
+      "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
     }
   },
   "scripts": {
     "dev": "NODE_ENV=DEV vite --host",
-    "build": "NODE_ENV=production tsc -b && vite build",
+    "build": "NODE_ENV=production tsc -b && vite build && tsc -p tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview",
     "rm": "rm -rf node_modules/ dist/ package-lock.json"
@@ -46,7 +48,6 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0",
     "vite": "^8.1.5",
-    "vite-plugin-css-injected-by-js": "^5.0.2",
-    "vite-plugin-dts": "^5.0.3"
+    "vite-plugin-css-injected-by-js": "^5.0.2"
   }
 }

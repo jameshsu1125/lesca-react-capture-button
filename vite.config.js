@@ -2,7 +2,6 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-import dtsPlugin from 'vite-plugin-dts';
 // https://vitejs.dev/config/
 export default defineConfig({
     base: './',
@@ -43,7 +42,6 @@ export default defineConfig({
     plugins: [
         react(),
         cssInjectedByJsPlugin(),
-        dtsPlugin({ insertTypesEntry: true, outDirs: ['../lib'] }),
     ],
     server: {
         open: true,
