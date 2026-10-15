@@ -19,7 +19,7 @@ const App = () => {
           setR(e);
         }}
       >
-        <div className='btn btn-primary'>capture</div>
+        <button className='btn btn-primary'>capture</button>
       </CaptureProvider>
     </>
   );

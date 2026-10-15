@@ -1,5 +1,6 @@
 import Compressor from 'compressorjs';
-import { ChangeEvent, Children, useId } from 'react';
+import { Children, useRef } from 'react';
+import type { ChangeEvent } from 'react';
 import { DOMString, ProviderProps } from './type';
 
 export type TResult = {
@@ -18,7 +19,7 @@ const CaptureProvider = ({
   multiple = false,
   onCapture,
 }: ProviderProps) => {
-  const id = useId();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -66,12 +67,17 @@ const CaptureProvider = ({
   return (
     <>
       {Children.map(children, (child) => (
-        <label htmlFor={id} style={typeof child !== 'string' ? { display: 'contents' } : undefined}>
+        <div
+          onClick={(event) => {
+            if (!event.defaultPrevented) inputRef.current?.click();
+          }}
+          style={{ display: 'contents' }}
+        >
           {child}
-        </label>
+        </div>
       ))}
       <input
-        id={id}
+        ref={inputRef}
         style={{ display: 'none' }}
         type='file'
         accept='image/png,image/jpeg,image/webp;capture=camera'
